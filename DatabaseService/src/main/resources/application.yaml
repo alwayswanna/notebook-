@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: document-viewer
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: admin
+      password: admin
+      database: document_collection
+      authentication-database: admin
+server:
+  port: 7075
+
+service:
+  setup:
+    application-version: "0.0.1"
+
