@@ -3,7 +3,7 @@ class Note {
   final String title;
   final String description;
   final String payload;
-  final Map<String, String> attributes;
+  final Map<String, dynamic> attributes;
 
   Note(
       {required this.id,
