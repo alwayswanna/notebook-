@@ -2,6 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_view/dto/note.dart';
+import 'package:note_view/utils/request.dart';
+
+import 'notes_model.dart';
 
 class EditNote extends StatelessWidget{
   EditNote(this.note);
@@ -29,9 +32,9 @@ class EditNote extends StatelessWidget{
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: TextFormField(
-                      initialValue: note.title,
                       controller: titleController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
+                          hintText: note.title,
                           border: UnderlineInputBorder(),
                           labelText: "Title"),
                     ),
@@ -40,11 +43,11 @@ class EditNote extends StatelessWidget{
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: TextFormField(
-                      initialValue: note.description,
                       controller: descriptionController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
+                          hintText: note.description,
                           border: UnderlineInputBorder(),
-                          labelText: "Description"),
+                          labelText: 'Description'),
                     ),
                   ),
                   Padding(
@@ -53,6 +56,9 @@ class EditNote extends StatelessWidget{
                     child: new ConstrainedBox(
                       constraints: BoxConstraints(maxHeight: 300),
                       child: TextField(
+                        decoration: InputDecoration(
+                          hintText: note.payload
+                        ),
                         controller: payloadController,
                         maxLines: null,
                       ),
@@ -62,6 +68,16 @@ class EditNote extends StatelessWidget{
                       padding: EdgeInsets.all(10),
                       child: ElevatedButton.icon(
                           onPressed: () {
+                            Request().editSelectedNote(new Note(
+                                id: note.id,
+                                title: titleController.text,
+                                description: descriptionController.text,
+                                payload: payloadController.text,
+                                attributes: note.attributes));
+                            Navigator.pushAndRemoveUntil(
+                              context, MaterialPageRoute(builder: (context) => NoteList()),
+                                  (Route<dynamic> route) => false,
+                            );
                           },
                           icon: const Icon(
                             Icons.add,

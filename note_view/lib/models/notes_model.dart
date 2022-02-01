@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:note_view/dto/note.dart';
 import 'package:note_view/models/add_note.dart';
 import 'package:note_view/utils/request.dart';
-import 'package:intl/intl.dart';
 
 import 'note_view.dart';
 
@@ -31,8 +31,6 @@ class _NoteListState extends State<NoteList> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return new Scaffold(
         appBar: AppBar(
           title: Text('NoteBook~'),
@@ -54,21 +52,21 @@ class _NoteListState extends State<NoteList> {
           splashColor: Colors.grey,
         ),
         body: GridView.count(
-          restorationId: 'grid_view_demo_grid_offset',
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          padding: const EdgeInsets.all(15),
-          childAspectRatio: 1,
-          crossAxisCount: 8,
-          children: futureNote.map<Widget>((note) {
-            return _GridNoteItem(note: note);
-          }).toList()
-        ));
+            restorationId: 'grid_view_demo_grid_offset',
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
+            padding: const EdgeInsets.all(15),
+            childAspectRatio: 1,
+            crossAxisCount: 4,
+            children: futureNote.map<Widget>((note) {
+              return _GridNoteItem(note: note);
+            }).toList()));
   }
 }
 
 class _GridNoteItem extends StatelessWidget {
   const _GridNoteItem({required this.note});
+
   final Note note;
 
   @override
@@ -92,24 +90,25 @@ class _GridNoteItem extends StatelessWidget {
           child: GridTileBar(
             backgroundColor: Colors.black12,
             title: _GridTitleText(note.title),
-            subtitle: _GridTitleText(note.attributes['time'].toString().substring(0, 10)),
+            subtitle: _GridTitleText(
+                note.attributes['time'].toString().substring(0, 10)),
           ),
           shadowColor: Colors.black12,
         ),
         child: GestureDetector(
-          onTap: (){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ViewNote(note)));
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ViewNote(note)));
           },
           child: image,
         ));
   }
 
-  setImageByWeekDay(Map<String, dynamic> attr){
+  setImageByWeekDay(Map<String, dynamic> attr) {
     var dateString = attr['time'].toString();
     var date = new DateFormat("yyyy-MM-dd").parse(dateString.substring(0, 10));
     var currentDay = DateFormat('EEEE').format(date);
-    switch(currentDay){
+    switch (currentDay) {
       case 'Monday':
         return 'assets/images/monday.jpg';
       case 'Tuesday':
@@ -128,7 +127,6 @@ class _GridNoteItem extends StatelessWidget {
         return 'assets/images/background_note.jpg';
     }
   }
-
 }
 
 class _GridTitleText extends StatelessWidget {
