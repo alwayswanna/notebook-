@@ -7,9 +7,9 @@ import 'package:note_view/utils/request.dart';
 import 'notes_model.dart';
 
 class AddNote extends StatelessWidget {
-  final title_controller = TextEditingController();
-  final description_controller = TextEditingController();
-  final payload_controller = TextEditingController();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final payloadController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class AddNote extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: TextFormField(
-                      controller: title_controller,
+                      controller: titleController,
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: "What i must remember?"),
@@ -39,7 +39,7 @@ class AddNote extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: TextFormField(
-                      controller: description_controller,
+                      controller: descriptionController,
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: "Hm, shortly description"),
@@ -51,7 +51,7 @@ class AddNote extends StatelessWidget {
                     child: new ConstrainedBox(
                       constraints: BoxConstraints(maxHeight: 300),
                       child: TextField(
-                        controller: payload_controller,
+                        controller: payloadController,
                         maxLines: null,
                       ),
                     ),
@@ -62,9 +62,9 @@ class AddNote extends StatelessWidget {
                           onPressed: () {
                             saveNewNote(
                                 context,
-                                title_controller.text,
-                                description_controller.text,
-                                payload_controller.text);
+                                titleController.text,
+                                descriptionController.text,
+                                payloadController.text);
                           },
                           icon: const Icon(
                             Icons.add,
