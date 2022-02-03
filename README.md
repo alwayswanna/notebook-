@@ -1,8 +1,10 @@
-DocumentViewer
-=====================
+# NoteBook ~
+
+Simple desktop application.
 
 ### Used:
-   1. Java 17
-   2. SpringBoot 2.6.2
-   3. Swagger
-   4. MongoDB
+    1. Java 17
+    2. Spring Boot
+    3. Mongo DB
+    4. Flutter Desktop
+
