@@ -62,7 +62,7 @@ class Request {
     final response = await http.put(
       Uri.parse(SERVER_URI + "/note"),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF8',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
         'id': note.id,
