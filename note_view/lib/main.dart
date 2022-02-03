@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:note_view/models/notes_model.dart';
 import 'package:window_size/window_size.dart';
 
-//void main() => runApp(NoteApp());
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
